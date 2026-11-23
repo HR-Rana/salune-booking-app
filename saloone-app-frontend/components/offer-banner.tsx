@@ -12,9 +12,9 @@ export default function OfferBanner() {
             alt="Woman enjoying a relaxing premium salon treatment"
             fill
             sizes="(min-width: 1280px) 1216px, 100vw"
-            className="object-cover object-[64%_22%] opacity-60 [mask-image:linear-gradient(to_right,transparent_5%,black_60%)] md:opacity-75"
+            className="object-cover object-center opacity-70 [mask-image:linear-gradient(to_right,transparent_5%,black_55%)] md:opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1b0b30] via-[#1b0b30]/80 to-[#1b0b30]/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1b0b30] via-[#1b0b30]/85 to-[#1b0b30]/15" />
           <div className="absolute -left-16 -top-16 h-52 w-52 rounded-full bg-purple-600/30 blur-3xl" />
 
           <div className="relative z-10 flex flex-col gap-8 p-7 sm:p-10 md:flex-row md:items-center md:justify-between md:p-12">

@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${poppins.variable} ${playfair.variable} ${greatVibes.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-background font-sans text-foreground">
+      <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         {children}
       </body>
     </html>

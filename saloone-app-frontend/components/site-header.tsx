@@ -1,45 +1,60 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { navLinks } from "@/lib/data";
 import { LogoMark, SearchIcon } from "./icons";
 
 export default function SiteHeader() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setMenuOpen(false);
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+    router.push(
+      query.trim()
+        ? `/services?q=${encodeURIComponent(query.trim())}`
+        : "/services",
+    );
+  };
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) return pathname === "/";
+    if (href === "/services") return pathname.startsWith("/services");
+    return pathname.startsWith(href);
   };
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#08040f]/85 backdrop-blur-xl">
       <div className="container-page flex h-[74px] items-center gap-4">
-        <a href="#home" className="flex shrink-0 items-center gap-2.5">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <LogoMark className="h-9 w-9 text-gold" />
           <span className="font-display text-[26px] font-semibold tracking-tight text-gold-soft">
             SalonBook
           </span>
-        </a>
+        </Link>
 
         <nav className="ml-8 hidden items-center gap-8 lg:flex">
-          {navLinks.map((link, index) => (
-            <a
+          {navLinks.map((link) => (
+            <Link
               key={link.href}
               href={link.href}
               className={`relative py-6 text-[13px] font-medium transition-colors ${
-                index === 0
+                isActive(link.href)
                   ? "text-white"
                   : "text-white/65 hover:text-white"
               }`}
             >
               {link.label}
-              {index === 0 && (
+              {isActive(link.href) && (
                 <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-gold" />
               )}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -64,18 +79,18 @@ export default function SiteHeader() {
         </form>
 
         <div className="ml-auto flex items-center gap-2 md:ml-0">
-          <a
+          <Link
             href="/signin"
             className="hidden rounded-full border border-gold/60 px-5 py-2 text-xs font-medium text-gold transition hover:bg-gold hover:text-[#140a02] sm:block"
           >
             Sign In
-          </a>
-          <a
+          </Link>
+          <Link
             href="/signup"
             className="hidden rounded-full bg-gold px-5 py-2 text-xs font-semibold text-[#241705] transition hover:bg-gold-soft sm:block"
           >
             Sign Up
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -124,36 +139,36 @@ export default function SiteHeader() {
               </button>
             </form>
 
-            {navLinks.map((link, index) => (
-              <a
+            {navLinks.map((link) => (
+              <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className={`rounded-lg px-3 py-2.5 text-sm transition ${
-                  index === 0
+                  isActive(link.href)
                     ? "bg-white/[0.06] text-gold"
                     : "text-white/75 hover:bg-white/[0.04] hover:text-white"
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
             <div className="mt-3 flex gap-3">
-              <a
+              <Link
                 href="/signin"
                 onClick={() => setMenuOpen(false)}
                 className="flex-1 rounded-full border border-gold/60 py-2.5 text-center text-xs font-medium text-gold"
               >
                 Sign In
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/signup"
                 onClick={() => setMenuOpen(false)}
                 className="flex-1 rounded-full bg-gold py-2.5 text-center text-xs font-semibold text-[#241705]"
               >
                 Sign Up
-              </a>
+              </Link>
             </div>
           </div>
         </div>

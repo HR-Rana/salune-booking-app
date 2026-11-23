@@ -36,25 +36,25 @@ export default function Hero() {
             fill
             sizes="100vw"
             preload={index === 0}
-            className={`object-cover object-center transition-opacity duration-1000 ${
+            className={`object-cover object-[center_60%] brightness-105 transition-opacity duration-1000 ${
               index === active ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#08040f] via-[#08040f]/85 to-[#08040f]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#08040f] via-[#08040f]/80 to-[#08040f]/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#08040f] via-transparent to-[#08040f]/45" />
       </div>
 
       <div className="container-page relative z-10 flex min-h-[620px] flex-col justify-center py-16 md:min-h-[660px]">
-        <div className="max-w-3xl md:pl-8">
+        <div className="max-w-4xl md:pl-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-black/35 px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.22em] text-gold backdrop-blur">
             <CrownIcon className="h-3.5 w-3.5" />
             Premium Salon Services
           </span>
 
-          <h1 className="mt-5 max-w-2xl text-[34px] font-semibold leading-[1.08] tracking-tight text-white sm:text-[42px] lg:text-[52px] xl:text-[56px]">
-            <span className="block">Look Good. Feel Great.</span>
-            <span className="mt-1 block text-gold">Book Your</span>
+          <h1 className="mt-5 text-[34px] font-semibold leading-[1.08] tracking-tight text-white sm:text-[42px] lg:text-[52px] xl:text-[54px]">
+            <span className="block text-[0.72em]">Look Good. Feel Great.</span>
+            <span className="mt-2 block text-gold">Book Your</span>
             <span className="block text-gold">Salon Appointment Today</span>
           </h1>
 
